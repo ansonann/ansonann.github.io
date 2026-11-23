@@ -1404,6 +1404,100 @@ body:has(#overlay.vessel:not([hidden])) #title,body:has(#overlay.vessel:not([hid
 .identity select{font:inherit;background:#302c26;color:#f4ead8;border:1px solid #927b5b;border-radius:3px;padding:.48em}
 #cinema.vigil.at-table{background:linear-gradient(0deg,#161813de,transparent 57%,#13171425)}
 
+
+/* === 手機版專屬簡潔介面優化（僅限觸控／手機裝置，完全不影響電腦版） === */
+.mobile-desktop-tip{display:none !important}
+@media (hover:none) and (pointer:coarse){
+  .mobile-desktop-tip{
+    display:inline-flex !important;align-items:center;gap:.45rem;
+    margin:0 0 .95rem;padding:.44rem .86rem;border-radius:999px;
+    background:rgba(237,197,140,0.16);border:1px solid rgba(237,197,140,0.52);
+    color:#f7dfb3;font-size:.82rem;line-height:1.35;letter-spacing:.04em;
+  }
+}
+body.touch .mobile-desktop-tip{
+  display:inline-flex !important;align-items:center;gap:.45rem;
+  margin:0 0 .95rem;padding:.44rem .86rem;border-radius:999px;
+  background:rgba(237,197,140,0.16);border:1px solid rgba(237,197,140,0.52);
+  color:#f7dfb3;font-size:.82rem;line-height:1.35;letter-spacing:.04em;
+}
+body.touch #title{padding:max(1.1rem,env(safe-area-inset-top)) 1.15rem max(1.3rem,env(safe-area-inset-bottom))}
+body.touch #title .title-brand{position:static;margin-bottom:.3rem;font-size:.82rem}
+body.touch #title .title-logos{top:max(10px,env(safe-area-inset-top));right:10px;transform:scale(.80);transform-origin:top right}
+body.touch #title h1{font-size:clamp(2.1rem,8.5vw,3.1rem);margin:.2rem 0 .35rem}
+body.touch #title .subtitle{font-size:1rem;margin-bottom:.65rem}
+body.touch #title .introtext{font-size:.86rem;line-height:1.62;margin-bottom:.75rem}
+body.touch #title .years{display:none}
+
+/* 手機版：小地圖縮小並固定於左上角（與操作說明一致，徹底避開按鈕與左下搖桿） */
+body.touch #wayfinding{
+  top:max(8px,env(safe-area-inset-top)) !important;
+  left:max(8px,env(safe-area-inset-left)) !important;
+  bottom:auto !important;right:auto !important;
+  width:72px !important;border-radius:7px !important;
+  background:rgba(15,13,11,0.82) !important;
+  border:1px solid rgba(214,175,122,0.38) !important;
+}
+body.touch #minimap{max-height:58px !important}
+body.touch #nav-goal{display:none !important}
+body.touch #nav-distance{font-size:.55rem !important;padding:2px 3px !important;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* 手機版：精簡選單列置於左上角小地圖右側（直向窄螢幕時移至小地圖下方並留足間距） */
+body.touch #tools{
+  top:max(8px,env(safe-area-inset-top)) !important;
+  left:calc(max(8px,env(safe-area-inset-left)) + 80px) !important;
+  right:auto !important;
+  flex-direction:row !important;gap:5px !important;
+}
+body.touch #tools button{
+  padding:.32rem .52rem !important;font-size:.70rem !important;
+  border-radius:999px !important;background:rgba(20,17,14,0.82) !important;
+  backdrop-filter:blur(6px);
+}
+
+/* 手機版：右上角任務卡極簡化，只留地點與當前單行目標 */
+body.touch #chapter-info{
+  top:max(8px,env(safe-area-inset-top)) !important;
+  right:max(8px,env(safe-area-inset-right)) !important;
+  left:auto !important;
+  max-width:min(44vw,200px) !important;
+  padding:.36rem .58rem !important;border-radius:6px !important;
+  background:rgba(16,13,11,0.78) !important;backdrop-filter:blur(6px);
+}
+body.touch #chapter-date,body.touch #task-list,body.touch #controls-hint,body.touch #retarget,body.touch #state-chip{display:none !important}
+body.touch #place{font-size:.88rem !important;margin:0 0 2px !important;line-height:1.25}
+body.touch #task{font-size:.72rem !important;line-height:1.32 !important;color:#efe2c6}
+body.touch #task-progress{font-size:.64rem !important;margin-top:2px !important}
+
+/* 手機版：左下搖桿與右下動作按鈕清爽無遮擋 */
+body.touch #stick{
+  bottom:max(18px,calc(env(safe-area-inset-bottom) + 12px)) !important;
+  left:max(14px,env(safe-area-inset-left)) !important;
+  width:96px !important;height:96px !important;
+  background:rgba(28,22,17,0.56) !important;
+  border:1.5px solid rgba(244,218,170,0.55) !important;
+  backdrop-filter:blur(4px);
+}
+body.touch #stick i{width:38px !important;height:38px !important;margin:-19px !important;background:rgba(245,207,154,0.84) !important}
+body.touch .touch-actions{
+  bottom:max(20px,calc(env(safe-area-inset-bottom) + 14px)) !important;
+  right:max(14px,env(safe-area-inset-right)) !important;
+  gap:.55rem !important;
+}
+body.touch .touch-actions button{
+  width:66px !important;height:66px !important;font-size:.84rem !important;font-weight:600;
+  background:rgba(36,28,21,0.86) !important;box-shadow:0 6px 18px rgba(0,0,0,0.45);
+}
+body.touch .touch-actions #touch-photo{width:48px !important;height:48px !important;font-size:.74rem !important}
+body.touch #interaction{
+  bottom:max(122px,calc(env(safe-area-inset-bottom) + 108px)) !important;
+  font-size:.82rem !important;padding:.45rem .88rem !important;border-radius:999px !important;
+}
+body.touch #overlay.dialogue #panel{width:calc(100vw - 16px) !important;max-height:56dvh !important;padding:.88rem 1rem !important}
+@media (max-width:560px){
+  body.touch #tools{top:calc(max(8px,env(safe-area-inset-top)) + 96px) !important;left:max(8px,env(safe-area-inset-left)) !important;flex-direction:column !important;gap:6px !important}
+  body.touch #chapter-info{max-width:min(64vw,226px) !important}
+}
 </style>
 </head>
 <body>
@@ -1415,110 +1509,7 @@ body:has(#overlay.vessel:not([hidden])) #title,body:has(#overlay.vessel:not([hid
 </section>
 <button type="button" id="stand-seat" class="small quiet" hidden>從椅子起身</button><div id="scene-fade" aria-hidden="true"></div><div id="grain" aria-hidden="true"></div>
 
-<noscript><style>#boot-loader{display:none}
-/* === 手機版專屬簡潔介面優化（完全不影響電腦版） === */
-.mobile-desktop-tip{display:none}
-@media (max-width:760px), (hover:none) and (pointer:coarse){
-  .mobile-desktop-tip{
-    display:inline-flex;align-items:center;gap:.45rem;
-    margin:0 0 .95rem;padding:.42rem .82rem;border-radius:999px;
-    background:rgba(237,197,140,0.14);border:1px solid rgba(237,197,140,0.48);
-    color:#f7dfb3;font-size:.82rem;line-height:1.35;letter-spacing:.04em;
-  }
-  /* 主畫面手機精簡排版 */
-  #title{padding:max(1.2rem,env(safe-area-inset-top)) 1.15rem max(1.4rem,env(safe-area-inset-bottom))}
-  #title .title-brand{position:static;margin-bottom:.35rem;font-size:.82rem}
-  #title .title-logos{top:max(12px,env(safe-area-inset-top));right:12px;transform:scale(.82);transform-origin:top right}
-  #title h1{font-size:clamp(2.2rem,9vw,3.2rem);margin:.2rem 0 .35rem}
-  #title .subtitle{font-size:1.02rem;margin-bottom:.7rem}
-  #title .introtext{font-size:.88rem;line-height:1.65;margin-bottom:.8rem}
-  #title .years{display:none}
-
-  /* 左上角精簡選單列 */
-  #tools{
-    top:max(8px,env(safe-area-inset-top)) !important;
-    left:max(8px,env(safe-area-inset-left)) !important;
-    right:auto !important;
-    flex-direction:row !important;gap:5px !important;
-  }
-  #tools button{
-    padding:.38rem .58rem !important;font-size:.74rem !important;
-    border-radius:999px !important;background:rgba(20,17,14,0.82) !important;
-    backdrop-filter:blur(6px);
-  }
-
-  /* 小地圖移到左上角（選單下方），徹底避開左下角虛擬搖桿 */
-  #wayfinding{
-    top:calc(max(8px,env(safe-area-inset-top)) + 40px) !important;
-    left:max(8px,env(safe-area-inset-left)) !important;
-    bottom:auto !important;right:auto !important;
-    width:86px !important;border-radius:8px !important;
-    background:rgba(15,13,11,0.80) !important;
-    border:1px solid rgba(214,175,122,0.34) !important;
-  }
-  #minimap{max-height:74px !important}
-  #nav-goal{display:none !important}
-  #nav-distance{font-size:.6rem !important;padding:3px 5px !important;text-align:center}
-
-  /* 右上角任務卡極簡化：只留地點與當前單行目標 */
-  #chapter-info{
-    top:max(8px,env(safe-area-inset-top)) !important;
-    right:max(8px,env(safe-area-inset-right)) !important;
-    left:auto !important;
-    max-width:min(54vw,210px) !important;
-    padding:.38rem .62rem !important;
-    border-radius:6px !important;
-    background:rgba(16,13,11,0.78) !important;
-    backdrop-filter:blur(6px);
-  }
-  #chapter-date,#task-list{display:none !important}
-  #place{font-size:.9rem !important;margin:0 0 2px !important;line-height:1.25}
-  #task{font-size:.74rem !important;line-height:1.35 !important;color:#efe2c6}
-  #task-progress{font-size:.66rem !important;margin-top:2px !important}
-
-  /* 隱藏手機不必要的雜訊元素 */
-  #controls-hint,#retarget,#state-chip{display:none !important}
-
-  /* 下方觸控搖桿與動作按鈕清爽不重疊 */
-  #stick{
-    bottom:max(18px,calc(env(safe-area-inset-bottom) + 12px)) !important;
-    left:max(14px,env(safe-area-inset-left)) !important;
-    width:96px !important;height:96px !important;
-    background:rgba(28,22,17,0.56) !important;
-    border:1.5px solid rgba(244,218,170,0.55) !important;
-    backdrop-filter:blur(4px);
-  }
-  #stick i{width:38px !important;height:38px !important;margin:-19px !important;background:rgba(245,207,154,0.82) !important}
-  .touch-actions{
-    bottom:max(20px,calc(env(safe-area-inset-bottom) + 14px)) !important;
-    right:max(14px,env(safe-area-inset-right)) !important;
-    gap:.55rem !important;
-  }
-  .touch-actions button{
-    width:66px !important;height:66px !important;font-size:.84rem !important;font-weight:600;
-    background:rgba(36,28,21,0.86) !important;box-shadow:0 6px 18px rgba(0,0,0,0.45);
-  }
-  .touch-actions #touch-photo{width:48px !important;height:48px !important;font-size:.74rem !important}
-  #interaction{
-    bottom:max(122px,calc(env(safe-area-inset-bottom) + 108px)) !important;
-    font-size:.82rem !important;padding:.45rem .88rem !important;border-radius:999px !important;
-  }
-  /* 手機對話框更緊湊好按 */
-  #overlay.dialogue #panel{width:calc(100vw - 16px) !important;max-height:58dvh !important;padding:.9rem 1rem !important}
-}
-body.touch .mobile-desktop-tip{
-  display:inline-flex;align-items:center;gap:.45rem;
-  margin:0 0 .95rem;padding:.42rem .82rem;border-radius:999px;
-  background:rgba(237,197,140,0.14);border:1px solid rgba(237,197,140,0.48);
-  color:#f7dfb3;font-size:.82rem;line-height:1.35;letter-spacing:.04em;
-}
-body.touch #wayfinding{
-  top:calc(max(8px,env(safe-area-inset-top)) + 40px) !important;
-  left:max(8px,env(safe-area-inset-left)) !important;
-  bottom:auto !important;right:auto !important;
-  width:88px !important;
-}
-</style></noscript>
+<noscript><style>#boot-loader{display:none}</style></noscript>
 <canvas id="world" aria-label="第一人稱遊戲場景"></canvas><canvas id="fx" aria-hidden="true"></canvas><div id="vignette"></div>
 <main id="title">
   <div class="title-brand"><span>屏東・東港</span></div>
@@ -5157,8 +5148,9 @@ let titleClock=0;
 let autoVoice;
 let muteSnapshot=false;
 const touchScreen=matchMedia('(pointer:coarse)');
+const mobileDevice=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent||'');
 let touchedScene=false;
-let isTouch=touchScreen.matches;
+let isTouch=touchScreen.matches||mobileDevice;
 let drag=null;
 let touchStick=null;
 const stickAxis={x:0,y:0};
@@ -5182,7 +5174,7 @@ function persistPreferences(){
   try{localStorage.setItem(PREFS,JSON.stringify(settings));}catch{}
 }
 function applyTouch(){
-  isTouch=!!settings.touch||touchScreen.matches||touchedScene;
+  isTouch=!!settings.touch||touchScreen.matches||mobileDevice||touchedScene;
   document.body.classList.toggle('touch',isTouch);
   updateVisibility();
 }
@@ -6591,6 +6583,14 @@ function showHudTour(){
   if(hudTourShown||mode!=='play')return;
   hudTourShown=true;hudTourActive=true;
   const tour=$('hud-tour');if(!tour)return;
+  if(isTouch){
+    const tl=tour.querySelector('.tour-tl'),tr=tour.querySelector('.tour-tr'),bl=tour.querySelector('.tour-bl'),br=tour.querySelector('.tour-br'),ct=tour.querySelector('.tour-center span');
+    if(tl)tl.innerHTML='<b>左上角｜小地圖與選單</b><p>即時顯示所在位置與金色路線，點擊可展開完整地圖；下方可隨時開啟「記憶冊」或「暫停」。</p>';
+    if(tr)tr.innerHTML='<b>右上角｜任務指引</b><p>顯示目前的地點與當前目標，完成後會自動切換至下一個任務。</p>';
+    if(bl)bl.innerHTML='<b>左下角｜移動搖桿</b><p>拖曳左下角搖桿控制移動方向，滑動畫面空白處可轉動視角。</p>';
+    if(br)br.innerHTML='<b>右下角｜互動與拍照</b><p>靠近人物或物件時點「互動」展開對話，隨時可點「拍照」記錄東港風景。</p>';
+    if(ct)ct.textContent='輕點畫面任意處跳過介面介紹';
+  }
   tour.hidden=false;
   const dismiss=(e)=>{
     if(!hudTourActive)return;
@@ -7002,7 +7002,7 @@ function finishTarget(target,choice){
   if(requiredDone()&&!target.isExit){
     showToast(`下一段的光圈亮起了。跟著金色光點，靠近後${isTouch?'點「互動」':'按 E'}繼續。`);
   } else if(nxt&&!target.isExit){
-    $('compass-tip').textContent='下一個任務：'+nxt.label;$('compass-tip').hidden=false;
+    $('compass-tip').hidden=true;
     markTime=visualTime+5.0;
     showToast('下一個任務指引：'+nxt.label);
   }
@@ -7110,7 +7110,7 @@ function focusTarget(target=nextTask(),move=false){
   if(move){const [x,z]=vantage(target);camera.x=x;camera.z=z;}
   aimAt(target.x,target.y,target.z);
   markTime=visualTime+5.5;
-  $('compass-tip').textContent=target.label;$('compass-tip').hidden=false;
+  $('compass-tip').hidden=true;
   alignTags();
 }
 function alignTags(){
@@ -7350,8 +7350,8 @@ function actionSequence(name,p){
 
   switch(name){
     case 'receiveBook':return {title:'阿公遞來的藍布冊',shot:'parcel',steps:[
-      ['伸手接過冊子',take('book',.19)],['翻開第一頁',instant(()=>{open();Object.assign(p.openBook,held(),{pitch:-.78});grip(p,p.openBook,.34);})],
-      ['收進背包',go('openBook',stow,{half:.30,release:true,after:hide})]]};
+      ['伸手接過冊子',end=>{const gp=sceneView?.people?.find(a=>a.person==='grandpa');if(gp&&gp.pose==='holdBook'){gp.pose='rest';gp.mesh=humanMesh('grandpa',gp.masked,gp.ageBand||0,!!gp.seated,null,'rest',gp.headTurn||0,gp.expr||'neutral');}take('book',.19)(end);}],
+      ['收進背包',go('book',stow,{half:.19,release:true,after:hide})]]};
     case 'soup':return {title:'飯湯還熱',steps:[
       ['拉椅坐下',takeSeat],['雙手端起碗',go('bowl',()=>({...held(-.01,-.13,.48),pitch:.02}),{half:.145})],
       ['喝一口飯湯',end=>{soupSipCue();handleItem('bowl',()=>({...held(.01,-.15,.38),pitch:-.22}),{half:.178,ms:420},()=>{
